@@ -1,16 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
 import { ArrowUpRight, Plus } from "phosphor-react-native";
 import React from "react";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "styled-components/native";
 
-import logo from "../../assets/img/Logo.png";
 import { data } from "../../components/service/data";
 import Spacer from "../../components/Spacer";
+import useDietStatistics from "../../hooks/useDietStatistcs";
 import {
   ArrowButton,
   Container,
   Date,
-  DayList,
   DaysList,
   Divider,
   InitialsIcon,
@@ -28,30 +29,23 @@ import {
   SectionTitle,
   StayedOnDiet,
 } from "./styles";
-import { FlatList, View } from "react-native";
-
-interface Meal {
-  date: string;
-  meals: {
-    name: string;
-    description: string;
-    time: string;
-    stayedOnDiet: boolean;
-  }[];
-}
 
 const Home = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
   const { top, bottom } = useSafeAreaInsets();
 
+  const { totalMeals, mealsOnDiet, percentage } = useDietStatistics(data);
+  const formattedPercentage = percentage.toFixed(2).replace(".", ",");
+
   const navigateToStatistcs = () => {
-    console.log("oi");
+    navigation.navigate("Statistics");
   };
 
   return (
     <Container top={top} bottom={bottom}>
       <Row>
-        <Logo source={logo} />
+        <Logo source={require("../../assets/img/Logo.png")} />
         <InitialsIcon>
           <InitialsText>SV</InitialsText>
         </InitialsIcon>
@@ -62,7 +56,7 @@ const Home = () => {
           <ArrowUpRight size={32} color={theme.colors.greenDark} />
         </ArrowButton>
 
-        <PercentText>90,86%</PercentText>
+        <PercentText>{formattedPercentage}%</PercentText>
         <Spacer size={2} />
         <PercentSubtitle>das refeições dentro da dieta</PercentSubtitle>
       </PercentContainer>

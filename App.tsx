@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components/native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Nunito_400Regular, Nunito_700Bold, useFonts } from '@expo-google-fonts/nunito';
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import {
+  Nunito_400Regular,
+  Nunito_700Bold,
+  useFonts,
+} from "@expo-google-fonts/nunito";
 
-import Loading from './src/components/Loading';
-import theme from './src/theme';
-import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
-import Routes from './src/routes/routes';
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: ${theme.colors.gray500};
-`;
+import Loading from "./src/components/Loading";
+import theme from "./src/theme";
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
+import Routes from "./src/routes/routes";
 
 const App = () => {
   const [fontsLoaded] = useFonts({ Nunito_400Regular, Nunito_700Bold });
@@ -28,22 +28,24 @@ const App = () => {
   };
 
   const handleConfirm = () => {
-    // Lógica para confirmar a ação
     console.log("Ação confirmada!");
-    setModalVisible(false); // Fecha o modal após a confirmação
+    setModalVisible(false);
   };
 
   return !fontsLoaded ? (
     <Loading />
   ) : (
     <ThemeProvider theme={theme}>
-      <GestureHandlerRootView style={{flex: 1}}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics} style={{flex: 1}}>
-            <Routes />
-            {/* <Input label="Label" placeholder="Digite aqui..." />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider
+          initialMetrics={initialWindowMetrics}
+          style={{ flex: 1 }}
+        >
+          <Routes />
+          {/* <Input label="Label" placeholder="Digite aqui..." />
             <Button label="abrir modal" onPress={handleOpenModal} /> 
             */}
-            {/* <Modal 
+          {/* <Modal 
               title={'Deseja realmente excluir o\nregistro da refeição?'}
               visible={modalVisible} 
               onClose={handleCloseModal} 
@@ -53,6 +55,6 @@ const App = () => {
       </GestureHandlerRootView>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

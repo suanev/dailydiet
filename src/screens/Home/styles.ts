@@ -48,7 +48,7 @@ export const InitialsIcon = styled.View`
 `;
 
 export const InitialsText = styled.Text`
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.bold};
 
   color: ${({ theme }) => theme.colors.white};
 `;
@@ -73,7 +73,7 @@ export const ArrowButton = styled.TouchableOpacity.attrs({
 
 export const PercentText = styled.Text`
   font-size: 32px;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.bold};
   text-align: center;
   color: ${({ theme }) => theme.colors.gray100};
 `;
@@ -112,7 +112,7 @@ export const DaysList = styled(FlatList).attrs({
 
 export const Date = styled.Text`
   font-size: 18px;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.bold};
 
   text-align: start;
   align-content: flex-start;
@@ -150,7 +150,7 @@ export const MealItem = styled.View`
 
 export const MealHour = styled.Text`
   font-size: 12px;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.bold};
   width: 38px;
 
   align-self: center;
